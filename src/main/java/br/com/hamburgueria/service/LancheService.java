@@ -20,9 +20,15 @@ public class LancheService {
         this.lancheRepository = lancheRepository;
     }
 
-    public List<Lanche> listarLanches(){
-        List<Lanche> lanches = lancheRepository.findAll();
-        return lanches;
+    public List<Lanche> listarLanchesDisponiveis(){
+        List<Lanche> lanche = lancheRepository.findAll();
+        for (int i = 0; i < lanche.size(); i++ ) {
+            Lanche l = lanche.get(i);
+            if (l.getDisponibilidadeLanche().equals(Boolean.FALSE)) {
+                lanche.remove(i);
+            }
+        }
+        return lanche;
     }
 
     public void salvarLanche(Lanche lanche){
@@ -35,6 +41,11 @@ public class LancheService {
 
     public Optional<Lanche> procurarLanche(Long id){
         return lancheRepository.findById(id);
+    }
+
+    public List<Lanche> listarTodosLanches(){
+        List<Lanche> lanches = lancheRepository.findAll();
+        return lanches;
     }
 
 }

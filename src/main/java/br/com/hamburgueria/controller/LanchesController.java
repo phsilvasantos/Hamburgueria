@@ -20,10 +20,9 @@ public class LanchesController {
         this.lancheService = lancheService;
     }
 
-    @ResponseBody
     @GetMapping("/lanches")
     public List<LancheDto> listarLanches(){
-        List<Lanche> lanches = lancheService.listarLanches();
+        List<Lanche> lanches = lancheService.listarLanchesDisponiveis();
         return LancheDto.converter(lanches);
     }
 
@@ -60,6 +59,12 @@ public class LanchesController {
         else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/todosLanches")
+    public List<LancheDto> listarTodosLanches(){
+        List<Lanche> lanches = lancheService.listarTodosLanches();
+        return LancheDto.converter(lanches);
     }
 
 }

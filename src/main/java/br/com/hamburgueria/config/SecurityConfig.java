@@ -37,6 +37,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/cadastrar").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/h2/*").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET, "/swagger-ui").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/todosLanches").hasRole("ADMIN")
+
                 .and()
                 .csrf().disable()
                 .formLogin().disable()
