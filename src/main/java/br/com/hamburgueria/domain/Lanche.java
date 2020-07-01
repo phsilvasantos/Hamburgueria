@@ -13,7 +13,7 @@ public class Lanche {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idLanche;
-    private String NomeLanche;
+    private String nomeLanche;
     private Double valorLanche;
     private Boolean disponibilidadeLanche = true;
 
