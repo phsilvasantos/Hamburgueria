@@ -1,5 +1,6 @@
 package br.com.hamburgueria.controller;
 
+import br.com.hamburgueria.controller.form.AtualizacaoForm;
 import br.com.hamburgueria.domain.Lanche;
 import br.com.hamburgueria.dto.LancheDto;
 import br.com.hamburgueria.service.LancheService;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +40,7 @@ public class LanchesController {
         return ResponseEntity.created(uri).body(new LancheDto(lanche));
     }
 
+    @Transactional
     @DeleteMapping("/lanches/{id}")
     public ResponseEntity<Void> excluirLanche (@PathVariable Long id){
         Optional<Lanche> lanche = lancheService.procurarLanche(id);
@@ -65,6 +68,17 @@ public class LanchesController {
     public List<LancheDto> listarTodosLanches(){
         List<Lanche> lanches = lancheService.listarTodosLanches();
         return LancheDto.converter(lanches);
+    }
+
+    @Transactional
+    @PutMapping("/alterar/{id}")
+    public ResponseEntity<LancheDto> atualizar (@PathVariable Long id, @RequestBody AtualizacaoForm lanche){
+        Optional<Lanche> optionalLanche = lancheService.procurarLanche(id);
+        if (optionalLanche.isPresent()){
+            Lanche lancheAtualizado = lanche.atualizar(id, lancheService);
+            return ResponseEntity.ok(new LancheDto(lancheAtualizado));
+        }
+        return ResponseEntity.notFound().build();
     }
 
 }

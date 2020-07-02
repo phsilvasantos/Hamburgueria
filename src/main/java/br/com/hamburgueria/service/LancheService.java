@@ -48,4 +48,7 @@ public class LancheService {
         return lanches;
     }
 
+    public Lanche getOne(Long id) {
+        return lancheRepository.getOne(id);
+    }
 }
