@@ -17,7 +17,7 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPedido;
     private Date dataPedido;
-    private Integer numeroMesa;
+    private Integer numeroMesaPedido;
     private Double valorPedido;
 
 }

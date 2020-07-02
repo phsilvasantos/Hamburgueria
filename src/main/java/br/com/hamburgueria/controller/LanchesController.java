@@ -16,7 +16,7 @@ public class LanchesController {
 
     private LancheService lancheService;
 
-    LanchesController(LancheService lancheService){
+    public LanchesController(LancheService lancheService){
         this.lancheService = lancheService;
     }
 
