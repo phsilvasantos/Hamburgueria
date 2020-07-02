@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -15,8 +16,8 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPedido;
-    private Double numeroMesa;
-    private Double valorTotal;
-    private Integer lanchesId;
+    private Date dataPedido;
+    private Integer numeroMesa;
+    private Double valorPedido;
 
 }
