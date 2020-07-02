@@ -9,6 +9,8 @@ import lombok.Setter;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,4 +31,9 @@ public class PedidoDto {
         this.numeroMesa = pedido.getNumeroMesaPedido();
         this.data = pedido.getDataPedido();
     }
+
+    public static List<PedidoDto> converter(List<Pedido> pedidos){
+        return pedidos.stream().map(PedidoDto::new).collect(Collectors.toList());
+    }
+
 }
