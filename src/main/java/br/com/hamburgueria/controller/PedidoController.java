@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import java.net.URI;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +23,7 @@ public class PedidoController {
     }
 
     @PostMapping("/iniciar")
-    public ResponseEntity<PedidoDto> iniciarComanda(@RequestBody Integer numeroMesa, UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity<PedidoDto> iniciarComanda(@RequestBody Integer numeroMesa, UriComponentsBuilder uriComponentsBuilder) {
         Date data = new Date();
         data.getTime();
         Pedido pedido = new Pedido();
@@ -36,15 +36,31 @@ public class PedidoController {
     }
 
     @GetMapping("/comandas")
-    public List<PedidoDto> listarComandas(){
+    public List<PedidoDto> listarComandas() {
         List<Pedido> pedidos = pedidoService.listarComandas();
         return PedidoDto.converter(pedidos);
     }
 
     @GetMapping("comandas/{numeroMesaPedido}")
-    public ResponseEntity<PedidoDto> detalhesComanda(@PathVariable Integer numeroMesaPedido){
-        Pedido pedido = pedidoService.pesquisarComanda(numeroMesaPedido);
-        return ResponseEntity.ok(new PedidoDto(pedido));
+    public ResponseEntity<PedidoDto> detalhesComanda(@PathVariable Integer numeroMesaPedido) {
+        Optional<Pedido> pedido = pedidoService.pesquisarComanda(numeroMesaPedido);
+        if (pedido.isPresent()) {
+            return ResponseEntity.ok(new PedidoDto(pedido.get()));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
+    @Transactional
+    @DeleteMapping("finalizar/{numeroMesaPedido}")
+    public ResponseEntity<Void> finalizarComanda(@PathVariable Integer numeroMesaPedido) {
+        Optional<Pedido> pedido = pedidoService.pesquisarComanda(numeroMesaPedido);
+        if (pedido.isPresent()) {
+            pedidoService.finalizarComanda(pedido.get().getIdPedido());
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

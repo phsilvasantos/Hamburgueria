@@ -27,8 +27,11 @@ public class PedidoService {
         return pedidoRepository.findAll();
     }
 
-    public Pedido pesquisarComanda(Integer numeroMesaPedido) {
-        Optional<Pedido> pedido = pedidoRepository.findByNumeroMesaPedido(numeroMesaPedido);
-        return pedido.orElseThrow(() -> new ObjectNotFoundException("Comanda da mesa " + numeroMesaPedido + " não encontrada!", PedidoService.class.getName()));
+    public Optional<Pedido> pesquisarComanda(Integer numeroMesaPedido) {
+        return pedidoRepository.findByNumeroMesaPedido(numeroMesaPedido);
+    }
+
+    public void finalizarComanda(Long idPedido){
+        pedidoRepository.deleteById(idPedido);
     }
 }
