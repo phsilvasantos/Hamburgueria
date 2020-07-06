@@ -22,12 +22,14 @@ public class AtualizacaoPedidoForm {
         if (this.numeroMesaPedido != null){
             pedido.setNumeroMesaPedido(this.numeroMesaPedido);
         }
-        for (int id = 0; id < lanches.size(); id++) {
-            Lanche lancheSelecionado = lancheService.procurarLanche(lanches.get(id)).get();
-            lancheList.add(lancheSelecionado);
-            totalPedido += lancheSelecionado.getValorLanche();
+        if (this.lanches != null) {
+            for (int id = 0; id < lanches.size(); id++) {
+                Lanche lancheSelecionado = lancheService.procurarLanche(lanches.get(id)).get();
+                lancheList.add(lancheSelecionado);
+                totalPedido += lancheSelecionado.getValorLanche();
+            }
+            pedido.setValorPedido(totalPedido);
         }
-        pedido.setValorPedido(totalPedido);
         pedido.setLanches(lancheList);
         return pedido;
     }
