@@ -1,6 +1,6 @@
 package br.com.hamburgueria.controller;
 
-import br.com.hamburgueria.controller.form.AtualizacaoForm;
+import br.com.hamburgueria.controller.form.AtualizacaoLancheForm;
 import br.com.hamburgueria.domain.Lanche;
 import br.com.hamburgueria.dto.LancheDto;
 import br.com.hamburgueria.service.LancheService;
@@ -72,7 +72,7 @@ public class LanchesController {
 
     @Transactional
     @PutMapping("/alterar/{id}")
-    public ResponseEntity<LancheDto> atualizar (@PathVariable Long id, @RequestBody AtualizacaoForm lanche){
+    public ResponseEntity<LancheDto> atualizar (@PathVariable Long id, @RequestBody AtualizacaoLancheForm lanche){
         Optional<Lanche> optionalLanche = lancheService.procurarLanche(id);
         if (optionalLanche.isPresent()){
             Lanche lancheAtualizado = lanche.atualizar(id, lancheService);

@@ -1,5 +1,6 @@
 package br.com.hamburgueria.dto;
 
+import br.com.hamburgueria.domain.Lanche;
 import br.com.hamburgueria.domain.Pedido;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,18 +19,18 @@ import java.util.stream.Collectors;
 @Setter
 public class PedidoDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String data;
     private Integer numeroMesa;
     private Double valor;
+    private List<Lanche> lanches;
 
     public PedidoDto(Pedido pedido){
         this.id = pedido.getIdPedido();
         this.valor = pedido.getValorPedido();
         this.numeroMesa = pedido.getNumeroMesaPedido();
         this.data = pedido.getDataPedido();
+        this.lanches = pedido.getLanches();
     }
 
     public static List<PedidoDto> converter(List<Pedido> pedidos){

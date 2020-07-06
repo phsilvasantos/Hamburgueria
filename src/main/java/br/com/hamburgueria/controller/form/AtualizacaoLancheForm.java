@@ -6,7 +6,7 @@ import br.com.hamburgueria.service.LancheService;
 import lombok.Setter;
 
 @Setter
-public class AtualizacaoForm {
+public class AtualizacaoLancheForm {
 
     private String nomeLanche;
     private Double valorLanche;

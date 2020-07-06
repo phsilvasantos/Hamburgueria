@@ -1,7 +1,9 @@
 package br.com.hamburgueria.controller;
 
+import br.com.hamburgueria.controller.form.AtualizacaoPedidoForm;
 import br.com.hamburgueria.domain.Pedido;
 import br.com.hamburgueria.dto.PedidoDto;
+import br.com.hamburgueria.service.LancheService;
 import br.com.hamburgueria.service.PedidoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +19,11 @@ import java.util.Optional;
 public class PedidoController {
 
     private PedidoService pedidoService;
+    private LancheService lancheService;
 
-    public PedidoController(PedidoService pedidoService) {
+    public PedidoController(PedidoService pedidoService, LancheService lancheService) {
         this.pedidoService = pedidoService;
+        this.lancheService = lancheService;
     }
 
     @PostMapping("/iniciar")
@@ -63,4 +67,17 @@ public class PedidoController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @Transactional
+    @PutMapping("/alteraPedido/{numeroMesaPedido}")
+    public ResponseEntity<PedidoDto> alterarPedido(@PathVariable Integer numeroMesaPedido, @RequestBody AtualizacaoPedidoForm pedidoForm){
+        Optional<Pedido> optionalPedido = pedidoService.pesquisarComanda(numeroMesaPedido);
+        if (optionalPedido.isPresent()){
+            Pedido pedidoAtualizado = optionalPedido.get();
+            pedidoAtualizado = pedidoForm.atualizar(numeroMesaPedido, pedidoService, lancheService);
+            return ResponseEntity.ok(new PedidoDto(pedidoAtualizado));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }
