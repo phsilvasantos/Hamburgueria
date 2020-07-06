@@ -18,13 +18,16 @@ public class AtualizacaoPedidoForm {
     public Pedido atualizar(Integer numeroMesaPedido, PedidoService pedidoService, LancheService lancheService){
         Pedido pedido = pedidoService.pesquisarComanda(numeroMesaPedido).get();
         List<Lanche> lancheList = pedido.getLanches();
+        Double totalPedido = pedido.getValorPedido();
         if (this.numeroMesaPedido != null){
             pedido.setNumeroMesaPedido(this.numeroMesaPedido);
         }
         for (int id = 0; id < lanches.size(); id++) {
             Lanche lancheSelecionado = lancheService.procurarLanche(lanches.get(id)).get();
             lancheList.add(lancheSelecionado);
+            totalPedido += lancheSelecionado.getValorLanche();
         }
+        pedido.setValorPedido(totalPedido);
         pedido.setLanches(lancheList);
         return pedido;
     }

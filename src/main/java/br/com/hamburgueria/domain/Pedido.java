@@ -15,8 +15,9 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPedido;
     private String dataPedido;
+    @Column(unique = true)
     private Integer numeroMesaPedido;
-    private Double valorPedido;
+    private Double valorPedido = 0.0;
     @ManyToMany
     @JoinTable(name="PEDIDO_LANCHES", joinColumns=
             {@JoinColumn(name="ID_PEDIDO")}, inverseJoinColumns=
