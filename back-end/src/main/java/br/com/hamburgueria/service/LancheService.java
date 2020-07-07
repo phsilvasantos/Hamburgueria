@@ -1,10 +1,8 @@
 package br.com.hamburgueria.service;
 
 import br.com.hamburgueria.domain.Lanche;
-import br.com.hamburgueria.dto.LancheDto;
 import br.com.hamburgueria.repository.LancheRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

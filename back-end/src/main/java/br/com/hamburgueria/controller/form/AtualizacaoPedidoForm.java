@@ -6,7 +6,6 @@ import br.com.hamburgueria.service.LancheService;
 import br.com.hamburgueria.service.PedidoService;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Setter

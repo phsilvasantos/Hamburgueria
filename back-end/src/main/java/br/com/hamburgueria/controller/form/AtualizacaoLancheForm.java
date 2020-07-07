@@ -1,7 +1,6 @@
 package br.com.hamburgueria.controller.form;
 
 import br.com.hamburgueria.domain.Lanche;
-import br.com.hamburgueria.repository.LancheRepository;
 import br.com.hamburgueria.service.LancheService;
 import lombok.Setter;
 

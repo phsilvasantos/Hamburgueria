@@ -2,7 +2,6 @@ package br.com.hamburgueria.service;
 
 import br.com.hamburgueria.domain.Pedido;
 import br.com.hamburgueria.repository.PedidoRepository;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
