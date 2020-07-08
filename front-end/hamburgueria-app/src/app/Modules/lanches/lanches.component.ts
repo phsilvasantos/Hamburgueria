@@ -9,19 +9,16 @@ import { LancheService } from './lanches.service';
 })
 export class LanchesComponent implements OnInit {
 
-  lanches: Lanches[];
+  lancheService: LancheService;
+  lista: Lanches[];
 
-  constructor(private lancheService: LancheService) { }
+  constructor(ls: LancheService) {
+    this.lancheService = ls
+   }
 
-  ngOnInit() {
-    this.getLanches();
-  }
-
-  getLanches(){
-    this.lancheService.getLanches().subscribe((lanches: Lanches[]) => {
-      this.lanches = lanches;
-    });
-    console.log(this.lanches);
+  async ngOnInit() {
+    let arrayLanche = await this.lancheService.listarLanches().toPromise();
+    this.lista = arrayLanche;
   }
 
 }
