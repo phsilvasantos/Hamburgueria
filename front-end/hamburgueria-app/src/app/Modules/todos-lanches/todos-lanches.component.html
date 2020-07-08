@@ -1,3 +1,29 @@
-<div *ngFor="let l of lista">
-    {{l | json}}
+<div class="container">
+    <div class="card list-car">
+        <h5 class="card-header">Lista de lanches</h5>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Disponibilidade</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let l of lista">
+                        <td>{{l.id}}</td>
+                        <td>{{l.nome}}</td>
+                        <td>{{l.valor}}</td>
+                        <td>{{true == l.disponibilidade ? 'Disponivel' : 'Indisponivel'}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm" (click)="select(l)">Selecionar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

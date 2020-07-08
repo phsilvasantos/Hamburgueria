@@ -6,8 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { LanchesDetalhesComponent } from './lanches-detalhes/lanches-detalhes.component';
 import { TodosLanchesComponent } from './todos-lanches/todos-lanches.component';
 
-
-
 @NgModule({
   declarations: [LanchesComponent, 
     LanchesDetalhesComponent, 
