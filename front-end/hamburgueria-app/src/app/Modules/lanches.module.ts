@@ -4,18 +4,21 @@ import { LanchesComponent } from './lanches/lanches.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LanchesDetalhesComponent } from './lanches-detalhes/lanches-detalhes.component';
+import { TodosLanchesComponent } from './todos-lanches/todos-lanches.component';
 
 
 
 @NgModule({
   declarations: [LanchesComponent, 
-    LanchesDetalhesComponent],
+    LanchesDetalhesComponent, 
+    TodosLanchesComponent],
   imports: [
     CommonModule,
     RouterModule,
     HttpClientModule
   ],
   exports: [LanchesComponent, 
-    LanchesDetalhesComponent]
+    LanchesDetalhesComponent,
+    TodosLanchesComponent]
 })
 export class LanchesModule { }
