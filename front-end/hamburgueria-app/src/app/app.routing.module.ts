@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LanchesComponent } from './Modules/lanches/lanches.component';
 import { LanchesDetalhesComponent } from './Modules/lanches-detalhes/lanches-detalhes.component';
 import { TodosLanchesComponent } from './Modules/todos-lanches/todos-lanches.component';
+import { NovoLancheComponent } from './Modules/novo-lanche/novo-lanche.component';
 
 const routes: Routes = [
     {
@@ -17,6 +18,10 @@ const routes: Routes = [
     {
         path: 'todosLanches',
         component: TodosLanchesComponent
+    },
+    {
+        path: 'novoLanche',
+        component: NovoLancheComponent
     },
     {
         path: '**',

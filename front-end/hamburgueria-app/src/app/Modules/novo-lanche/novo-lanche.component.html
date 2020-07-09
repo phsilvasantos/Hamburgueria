@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header h3">
+            Cadastro de novo lanche
+        </div>
+        <div class="card-body">
+            <form [formGroup]="lancheForm" (ngSubmit)="addLanche(lancheForm.value)">
+                <div class="form-group">
+                    <label>Nome do lanche</label>
+                    <input name="nome_lanche" class="form-control" id="nomeLanche">
+                </div>
+                <div class="form-group">
+                    <label>Valor</label>
+                    <input type="valor_lanche" class="form-control" id="valorLanche">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="disponibilidadeLanche">
+                    <label class="form-check-label">Este lanche está disponivel?</label>
+                </div>
+                <button type="submit" [disabled]="!lancheForm.valid" class="btn btn-primary">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</div>

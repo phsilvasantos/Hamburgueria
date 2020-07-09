@@ -5,11 +5,13 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LanchesDetalhesComponent } from './lanches-detalhes/lanches-detalhes.component';
 import { TodosLanchesComponent } from './todos-lanches/todos-lanches.component';
+import { NovoLancheComponent } from './novo-lanche/novo-lanche.component';
 
 @NgModule({
   declarations: [LanchesComponent, 
     LanchesDetalhesComponent, 
-    TodosLanchesComponent],
+    TodosLanchesComponent, 
+    NovoLancheComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -17,6 +19,7 @@ import { TodosLanchesComponent } from './todos-lanches/todos-lanches.component';
   ],
   exports: [LanchesComponent, 
     LanchesDetalhesComponent,
-    TodosLanchesComponent]
+    TodosLanchesComponent,
+    NovoLancheComponent]
 })
 export class LanchesModule { }

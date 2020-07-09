@@ -14,8 +14,8 @@
                 <tbody>
                     <tr *ngFor="let l of lista">
                         <td>{{l.id}}</td>
-                        <td>{{l.nome}}</td>
-                        <td>{{l.valor}}</td>
+                        <td>{{l.nome | uppercase}}</td>
+                        <td>{{l.valor | currency}}</td>
                         <td>
                             <button type="button" class="btn btn-primary btn-sm" (click)="select(l)">Selecionar</button>
                         </td>

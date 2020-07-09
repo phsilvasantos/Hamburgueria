@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="card list-car">
+    <div class="card">
         <h5 class="card-header">Lista de lanches</h5>
         <div class="card-body">
             <table class="table">
@@ -15,11 +15,14 @@
                 <tbody>
                     <tr *ngFor="let l of lista">
                         <td>{{l.id}}</td>
-                        <td>{{l.nome}}</td>
-                        <td>{{l.valor}}</td>
-                        <td>{{true == l.disponibilidade ? 'Disponivel' : 'Indisponivel'}}</td>
+                        <td>{{l.nome | uppercase}}</td>
+                        <td>{{l.valor | currency}}</td>
+                        <td>{{true == l.disponibilidade ? 'Disponível' : 'Indisponível'}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm" (click)="select(l)">Selecionar</button>
+                            <button type="button" class="btn btn-warning btn-sm"
+                                (click)="editarLanche(l)">Editar</button>
+                            <button type="button" class="btn btn-danger btn-sm ml-1"
+                                (click)="excluirLanche(l)">Deletar</button>
                         </td>
                     </tr>
                 </tbody>
